@@ -431,3 +431,25 @@ AddEventHandler('onResourceStop', function(resource)
 		TriggerEvent('esx_phone:removeNumber', 'police')
 	end
 end)
+
+
+
+RegisterNetEvent("esx_policejob:impoundVehicle")
+AddEventHandler("esx_policejob:impoundVehicle", function(plate, state)
+	if GetInvokingResource() then return end
+	if not plate then return end
+	if not state then return end
+
+
+	ESX.SetStored(plate, state)
+
+	local response = MySQL.query.await('SELECT `owner` FROM `owned_vehicles` WHERE `plate` = ?', {
+		plate
+	})
+	if not response then return end
+
+	local owner = ESX.GetPlayerFromIdentifier(response[1].owner)
+	if not owner then return end
+
+	owner.showNotification(TranslateCap('your_vehicle_impounded', plate))
+end)

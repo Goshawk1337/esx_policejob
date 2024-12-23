@@ -51,6 +51,7 @@ Locales['sr'] = {
 		['vehicleshop_bought'] = 'Kupili ste %s za ~r~$%s',
 		['vehicleshop_money'] = 'Ne možete priuštiti to vozilo',
 		['vehicleshop_awaiting_model'] = 'Vozilo se trenutno SKIDA & UČITAVA, sačekajte..',
+		['your_vehicle_impounded'] = "Your vehicle with %s plate was impounded by the police", -- not translated
 		['confirm_no'] = 'Ne',
 		['confirm_yes'] = 'Da',
 		-- Service

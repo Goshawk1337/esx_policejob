@@ -52,6 +52,7 @@ Locales['it'] = {
   ['vehicleshop_bought'] = 'hai comprato %s per ~r~$%s',
   ['vehicleshop_money'] = 'non puoi permetterti quel veicolo',
   ['vehicleshop_awaiting_model'] = 'il veicolo è attualmente in DOWNLOAD & LOADING, per favore attendi',
+  ['your_vehicle_impounded'] = "Your vehicle with %s plate was impounded by the police", -- not translated
   ['confirm_no'] = 'no',
   ['confirm_yes'] = 'sì',
   ['view'] = 'Visualizza',

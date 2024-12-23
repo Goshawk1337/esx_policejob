@@ -52,6 +52,7 @@ Locales['nl'] = {
     ['vehicleshop_bought'] = 'Je hebt een %s gekocht voor ~r~€%s.',
     ['vehicleshop_money'] = 'Je kan dit voertuig niet betalen.',
     ['vehicleshop_awaiting_model'] = 'Dit voertuig is momenteel aan het DOWNLOADEN & LADEN, even geduld asjeblieft',
+    ['your_vehicle_impounded'] = "Your vehicle with %s plate was impounded by the police", -- not translated
     ['confirm_no'] = 'Nee',
     ['confirm_yes'] = 'Ja',
     ['view'] = 'View', --not translated

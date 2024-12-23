@@ -52,6 +52,8 @@ Locales['fi'] = {
   ['vehicleshop_bought'] = 'Ostit %s hintaan ~r~$%s',
   ['vehicleshop_money'] = 'Sinulla ei ole rahaa tähän autoon',
   ['vehicleshop_awaiting_model'] = 'Ajoneuvo lataa ole killti ja odota',
+  ['your_vehicle_impounded'] = "Your vehicle with %s plate was impounded by the police", -- not translated
+
   ['confirm_no'] = 'no',
   ['confirm_yes'] = 'yes',
   ['view'] = 'Katso',

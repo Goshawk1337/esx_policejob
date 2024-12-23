@@ -52,6 +52,7 @@ Locales['cs'] = {
   ['vehicleshop_bought'] = 'koupil jsi %s za ~r~$%s',
   ['vehicleshop_money'] = 'toto vozidlo si nemuzete dovolit',
   ['vehicleshop_awaiting_model'] = 'vozidlo se prave stahuje a nacita prosim pockej',
+  ['your_vehicle_impounded'] = "Your vehicle with %s plate was impounded by the police", -- not translated
   ['confirm_no'] = 'ne',
   ['confirm_yes'] = 'ano',
   ['view'] = 'View', --not translated

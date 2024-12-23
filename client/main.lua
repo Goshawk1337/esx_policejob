@@ -595,7 +595,13 @@ function LookupVehicle(elementF)
 
 	ESX.OpenContext("right", elements, function(menu,element)
 		local data = {value = menu.eles[2].inputValue}
-		local length = string.len(data.value)
+		local length
+		if data.value then
+			length = string.len(data.value)
+		else
+			length = 0
+		end
+		
 		if not data.value or length < 2 or length > 8 then
 			ESX.ShowNotification(TranslateCap('search_database_error_invalid'))
 		else
@@ -1537,12 +1543,13 @@ function StartHandcuffTimer()
 	end)
 end
 
--- TODO
---   - return to garage if owned
---   - message owner that his vehicle has been impounded
+
 function ImpoundVehicle(vehicle)
-	--local vehicleName = GetLabelText(GetDisplayNameFromVehicleModel(GetEntityModel(vehicle)))
+	local plate = ESX.Game.GetVehicleProperties(vehicle).plate
+	TriggerServerEvent("esx_policejob:impoundVehicle", plate, 2)
 	ESX.Game.DeleteVehicle(vehicle)
 	ESX.ShowNotification(TranslateCap('impound_successful'))
+
+
 	currentTask.busy = false
 end

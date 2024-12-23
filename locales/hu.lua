@@ -52,6 +52,7 @@ Locales['hu'] = {
   ['vehicleshop_bought'] = 'vásároltál %s ezért: ~r~%s Ft',
   ['vehicleshop_money'] = 'Ezt nem engedheted meg.',
   ['vehicleshop_awaiting_model'] = 'A jármű LETÖLT & BETÖLT kérlek várj',
+  ['your_vehicle_impounded'] = "A %s rendszámú járműved a rendőrség lefoglalta",
   ['confirm_no'] = 'nem',
   ['confirm_yes'] = 'igen',
   ['view'] = 'View', --not translated
