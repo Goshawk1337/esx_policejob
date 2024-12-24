@@ -435,21 +435,37 @@ end)
 
 
 RegisterNetEvent("esx_policejob:impoundVehicle")
-AddEventHandler("esx_policejob:impoundVehicle", function(plate, state)
-	if GetInvokingResource() then return end
+AddEventHandler("esx_policejob:impoundVehicle", function(plate, state, netId)
 	if not plate then return end
 	if not state then return end
+	if not NetworkGetEntityFromNetworkId(netId) then return end
 
+	local xPlayer = ESX.GetPlayerFromId(source)
+	local pedCoords, vehCoords = GetEntityCoords(GetPlayerPed(xPlayer.source)), GetEntityCoords(netId)
+	local dist = #(pedCoords - vehCoords)
+	if not xPlayer.job.name == "police" and dist > 3.0  then return end
 
-	ESX.SetStored(plate, state)
-
-	local response = MySQL.query.await('SELECT `owner` FROM `owned_vehicles` WHERE `plate` = ?', {
+	SendToImpounded(plate)
+	
+	local response = MySQL.scalar.await('SELECT `owner` FROM `owned_vehicles` WHERE `plate` = ?', {
 		plate
 	})
 	if not response then return end
+	local xOwner = ESX.GetPlayerFromIdentifier(response)
+	if not xOwner then return end
 
-	local owner = ESX.GetPlayerFromIdentifier(response[1].owner)
-	if not owner then return end
-
-	owner.showNotification(TranslateCap('your_vehicle_impounded', plate))
+	xOwner.showNotification(TranslateCap('your_vehicle_impounded', plate))
 end)
+
+---@param plate string
+function SendToImpounded(plate)
+	if not plate then return end
+	local affectedRows = MySQL.update.await('UPDATE owned_vehicles SET stored = ?, vehicle = JSON_SET(vehicle, "$.plate", ?) WHERE plate = ?', {
+        2, plate, plate
+    })
+
+	if not affectedRows then 
+		print("error in sending a vehicle to impound")
+		return
+	end
+end

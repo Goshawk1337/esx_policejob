@@ -595,12 +595,11 @@ function LookupVehicle(elementF)
 
 	ESX.OpenContext("right", elements, function(menu,element)
 		local data = {value = menu.eles[2].inputValue}
-		local length
-		if data.value then
-			length = string.len(data.value)
-		else
-			length = 0
+		if not data.value then
+			return
 		end
+
+		local length = data.value:len()
 		
 		if not data.value or length < 2 or length > 8 then
 			ESX.ShowNotification(TranslateCap('search_database_error_invalid'))
@@ -1545,8 +1544,8 @@ end
 
 
 function ImpoundVehicle(vehicle)
-	local plate = ESX.Game.GetVehicleProperties(vehicle).plate
-	TriggerServerEvent("esx_policejob:impoundVehicle", plate, 2)
+	local plate = ESX.Math.Trim(GetVehicleNumberPlateText(vehicle))
+	TriggerServerEvent("esx_policejob:impoundVehicle", plate, 2, NetworkGetNetworkIdFromEntity(vehicle))
 	ESX.Game.DeleteVehicle(vehicle)
 	ESX.ShowNotification(TranslateCap('impound_successful'))
 
